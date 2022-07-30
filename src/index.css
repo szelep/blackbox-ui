@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Montserrat-Light';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url('./assets/fonts/Montserrat-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Light|Bold';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url('./assets/fonts/Montserrat-Regular.otf') format('opentype');
+}
+
+* {
+    font-family: 'Montserrat-Light', serif;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(20deg);
+    }
+}
+
+body {
+    background-image: linear-gradient(to right top, #833863, #843974, #813d87, #77439b, #634cb0, #505cbe, #366bc9, #0078d1, #008bce, #0099c3, #2ba5b5, #63afab);
+}
+
+html, body {
+    overflow: auto;
+    min-height:100%;
+}
