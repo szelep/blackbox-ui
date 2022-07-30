@@ -19,7 +19,7 @@ it('should render expected form fields', () => {
     </LocalizationProvider>
   );
 
-  expect(screen.getByRole('textbox', { name: /protected content/i })).toBeInTheDocument();
+  expect(screen.getByRole('textbox', { name: /content/i })).toBeInTheDocument();
   expect(screen.getByRole('textbox', { name: /choose date/i })).toBeInTheDocument();
   expect(screen.getByText(/passwordfield component/i)).toBeInTheDocument();
   expect(screen.getByRole('button', { name: /submit/i })).toBeInTheDocument();

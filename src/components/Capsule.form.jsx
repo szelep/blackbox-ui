@@ -70,7 +70,7 @@ export function CapsuleForm({
                   disabled={initialData?.status === 'published'}
                   required
                   id="6NavJcxay3tKcyE"
-                  label="Protected content"
+                  label="Content"
                   multiline
                   minRows={5}
                   error={!!error}

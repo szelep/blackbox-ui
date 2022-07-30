@@ -14,9 +14,7 @@
     url('./assets/fonts/Montserrat-Regular.otf') format('opentype');
 }
 
-* {
-    font-family: 'Montserrat-Light', serif;
-}
+
 
 @keyframes spin {
     0% {

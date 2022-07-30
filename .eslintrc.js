@@ -25,6 +25,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
     'object-property-newline': [
       'error',
