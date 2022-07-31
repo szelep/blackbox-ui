@@ -1,7 +1,7 @@
 {
   "name": "blackbox-ui",
   "version": "0.1.0",
-  "description": "Client application for blackbox-api.",
+  "description": "Client application for blackbox.link",
   "main": "index.js",
   "repository": "https://github.com/szelep/blackbox-ui",
   "author": "Konrad Szelepusta <konrad.szelepusta@gmail.com>",
