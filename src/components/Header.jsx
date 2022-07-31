@@ -6,9 +6,9 @@ import {
   AccordionSummary,
   Box,
   Divider,
+  Link,
   Typography,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 /**
  * Application header.
@@ -33,7 +33,7 @@ export function Header() {
             textDecoration: 'none',
             cursor: 'pointer',
           }}
-          to="/"
+          href="/"
         >
           Blackb
           <LockClockOutlinedIcon fontSize="large" />

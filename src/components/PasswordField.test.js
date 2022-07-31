@@ -28,12 +28,12 @@ it('should render expected field with helper text', () => {
   expect(screen.getByLabelText('Password *')).toHaveAttribute('type', 'password');
 });
 
-it('should change input type to text', () => {
+it('should change input type to text', async () => {
   render(
     <WrappedComponent />
   );
 
-  userEvent.click(screen.getByTestId('VisibilityIcon'));
+  await userEvent.click(screen.getByTestId('VisibilityIcon'));
 
   expect(screen.getByLabelText('Password *')).toHaveAttribute('type', 'text');
 });
@@ -43,7 +43,7 @@ it('should render validation error instead of helper text', async () => {
     <WrappedComponent />
   );
 
-  userEvent.click(screen.getByLabelText('Password *'));
+  await userEvent.click(screen.getByLabelText('Password *'));
   userEvent.click(document.body);
 
   await screen.findByText(/This field must not be blank./i);

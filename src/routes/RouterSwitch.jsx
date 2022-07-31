@@ -28,7 +28,7 @@ export function RouterSwitch() {
       component: <AccessDenied />,
     },
     {
-      path: '/capsules/:id/edit',
+      path: '/e/:id',
       component: <Dashboard />,
     },
     {
@@ -36,8 +36,12 @@ export function RouterSwitch() {
       component: <Dashboard preview />,
     },
     {
-      path: '/capsules/new',
+      path: '/',
       component: <Dashboard />,
+    },
+    {
+      path: '/n',
+      component: <Navigate to="/" />,
     },
   ];
 
@@ -49,11 +53,6 @@ export function RouterSwitch() {
             key="wildcard"
             path="*"
             element={<Navigate to="/404" />}
-          />,
-          <Route
-            key="common"
-            path="/"
-            element={<Navigate to="/capsules/new" />}
           />,
           ...routes
             .map(({

@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom';
  */
 export function OwnerInfo({ id }) {
   return (
-    <Typography>
+    <Typography variant="caption" sx={{ mt: (t) => t.spacing(2) }}>
       Are you owner of this capsule?&nbsp;
-      <Link to={`/capsules/${id}/edit`}>Click here to edit</Link>
+      <Link to={`/e/${id}`}>Click here to edit.</Link>
     </Typography>
   );
 }

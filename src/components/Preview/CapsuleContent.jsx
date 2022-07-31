@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import {
   Box,
+  MenuList,
   Paper,
 } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { OwnerInfo } from './OwnerInfo';
 import { PublishDistanceItem } from '../Summary/PublishDistanceItem';
-import { ContentLoader } from '../ContentLoader';
 
 /**
  * Renders capsule content.
@@ -29,10 +29,12 @@ export function CapsuleContent({
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
+        mb: (t) => t.spacing(2),
       }}
       >
-        <ContentLoader />
-        <PublishDistanceItem publishAt={new Date(publishAt)} />
+        <MenuList>
+          <PublishDistanceItem publishAt={new Date(publishAt)} />
+        </MenuList>
         <OwnerInfo id={id} />
       </Box>
     );
@@ -40,7 +42,13 @@ export function CapsuleContent({
 
   return (
     <>
-      <Paper elevation={4} sx={{ padding: (t) => t.spacing(3) }}>
+      <Paper
+        elevation={4}
+        sx={{
+          padding: (t) => t.spacing(3),
+          mb: (t) => t.spacing(2),
+        }}
+      >
         {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content || '') }} />
       </Paper>

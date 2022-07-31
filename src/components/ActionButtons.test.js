@@ -46,7 +46,7 @@ it('should render only "unpublish" button for published capsule', () => {
   expect(screen.queryByRole('button', { name: /save changes/i })).not.toBeInTheDocument();
 });
 
-it('should invoke on submit function on submit click', () => {
+it('should invoke on submit function on submit click', async () => {
   const onSaveStub = jest.fn();
   render(
     <ActionButtons
@@ -55,12 +55,12 @@ it('should invoke on submit function on submit click', () => {
     />
   );
 
-  userEvent.click(screen.getByRole('button', { name: /submit/i }));
+  await userEvent.click(screen.getByRole('button', { name: /submit/i }));
 
   expect(onSaveStub).toBeCalled();
 });
 
-it('should unpublish button click invoke global dialog', () => {
+it('should unpublish button click invoke global dialog', async () => {
   const renderDialogMock = jest.fn();
   render(
     // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -74,7 +74,7 @@ it('should unpublish button click invoke global dialog', () => {
     </GlobalDialogContext.Provider>
   );
 
-  userEvent.click(screen.getByRole('button', { name: /unpublish/i }));
+  await userEvent.click(screen.getByRole('button', { name: /unpublish/i }));
 
   expect(renderDialogMock).toBeCalledWith(<UnpublishForm capsuleId="a2634538-59f2-411f-8776-38e4da8ade8e" />, 'xs');
 });

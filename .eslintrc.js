@@ -25,6 +25,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/prefer-default-export': 0,
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
     'object-property-newline': [
@@ -72,6 +73,6 @@ module.exports = {
         tabWidth: 2,
       },
     ],
-    'react/jsx-filename-extension': 2,
+    'react/jsx-filename-extension': 0,
   },
 };

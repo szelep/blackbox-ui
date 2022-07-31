@@ -8,7 +8,6 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { useGlobalDialog } from './GlobalDialogProvider';
 import {
   ReloadListenerProvider,
   useReloadListener,

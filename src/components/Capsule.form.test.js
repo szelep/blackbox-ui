@@ -33,9 +33,11 @@ it('should not invoke onSubmit on invalid filled form', async () => {
     </LocalizationProvider>
   );
 
-  userEvent.click(screen.getByRole('button', { name: /submit/i }));
+  await userEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-  await screen.findByText(/This field must not be blank./i);
+  await waitFor(() => {
+    expect(screen.getByText(/this field must not be blank./i)).toBeInTheDocument();
+  });
   expect(onSubmitMock).not.toBeCalled();
 });
 
@@ -47,7 +49,7 @@ it('should invoke onSubmit on filled form', async () => {
     </LocalizationProvider>
   );
 
-  userEvent.type(screen.getByRole('textbox', { name: /protected content/i }), 'some content');
+  userEvent.type(screen.getByRole('textbox', { name: /content/i }), 'some content');
   userEvent.click(screen.getByRole('button', { name: /submit/i }));
 
   await waitFor(() => {
@@ -74,6 +76,21 @@ it('should hide password, date fields on published capsule and disable content',
   );
 
   expect(screen.queryByText(/passwordfield component/i)).not.toBeInTheDocument();
-  expect(screen.getByRole('textbox', { name: /protected content/i })).toBeDisabled();
+  expect(screen.getByRole('textbox', { name: /content/i })).toBeDisabled();
   expect(screen.queryByRole('textbox', { name: /choose date/i })).not.toBeInTheDocument();
+});
+
+it('should render provided initial data', () => {
+  render(
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <CapsuleForm
+        onSubmit={jest.fn()}
+        initialData={{
+          publishAt: '2100-01-01',
+        }}
+      />
+    </LocalizationProvider>
+  );
+
+  expect(screen.getByRole('textbox', { name: /choose date, selected date is jan 1, 2100/i })).toBeInTheDocument();
 });

@@ -15,6 +15,7 @@ import { useSnackbar } from '../providers/SnackbarProvider';
 import { useReloadListener } from '../providers/ReloadListenerProvider';
 import { CapsuleSummary } from '../components/Summary/Capsule.summary';
 import { CapsuleContent } from '../components/Preview/CapsuleContent';
+import { BackdropReloader } from '../components/BackdropReloader';
 
 /**
  * Main page dashboard.
@@ -62,7 +63,7 @@ export function Dashboard({ preview }) {
     try {
       const { data } = await submitFunc(url, payload);
       if (data?.id) {
-        navigate(`/capsules/${data.id}/edit`);
+        navigate(`/e/${data.id}`);
         success(`Your capsule has been ${capsuleData ? 'modified' : 'created'} successfully!`);
         reload('capsule');
       }
@@ -91,14 +92,24 @@ export function Dashboard({ preview }) {
     return <ContentLoader />;
   }
 
+  const publicationDate = capsuleData?.publishAt ? new Date(capsuleData.publishAt) : null;
+
   if (preview && !!capsuleData) {
-    return <CapsuleContent data={capsuleData} />;
+    return (
+      <>
+        <BackdropReloader publicationDate={publicationDate} />
+        <CapsuleContent data={capsuleData} />
+      </>
+    );
   }
 
   return (
     <>
       {!!capsuleData && (
+      <>
+        <BackdropReloader publicationDate={publicationDate} />
         <CapsuleSummary data={capsuleData} />
+      </>
       )}
       <CapsuleForm
         initialData={capsuleData}

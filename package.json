@@ -11,7 +11,7 @@
     "start": "webpack-dev-server . --config webpack.dev.config.js",
     "build-prod": "webpack . --config webpack.prod.config.js",
     "build-dev": "webpack . --config webpack.dev.config.js",
-    "test": "test",
+    "test": "jest --coverage --ci --bail",
     "lint": "eslint --ext .js,.jsx"
   },
   "devDependencies": {

@@ -46,7 +46,7 @@ it('should message and dialog not be displayed without render invoke', () => {
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 
-it('should render dialog with provided content', () => {
+it('should render dialog with provided content', async () => {
   render(
     <GlobalDialogProvider>
       <TestComponent />
@@ -55,8 +55,10 @@ it('should render dialog with provided content', () => {
 
   userEvent.click(screen.getByTestId('render-button'));
 
+  await waitFor(() => {
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
   expect(screen.getByText(/this text will be rendered in dialog/i)).toBeInTheDocument();
-  expect(screen.getByRole('dialog')).toBeInTheDocument();
 });
 
 it('should close opened dialog', async () => {
@@ -67,6 +69,10 @@ it('should close opened dialog', async () => {
   );
 
   userEvent.click(screen.getByTestId('render-button'));
+
+  await waitFor(() => {
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
   const dialogElement = screen.getByRole('dialog');
   expect(dialogElement).toBeInTheDocument();
 

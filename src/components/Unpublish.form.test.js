@@ -41,14 +41,14 @@ it('should send expected PUT request on valid form submission', async () => {
     </SnackbarContext.Provider>
   );
 
-  userEvent.type(screen.getByLabelText(/Password/), 'test');
+  await userEvent.type(screen.getByLabelText(/Password/), 'test');
   userEvent.click(screen.getByRole('button', { name: /confirm/i }));
 
   await waitFor(() => {
     expect(mockSnackSuccess).toBeCalledWith('Capsule has been unpublished successfully!');
   });
   expect(requestService.put).toBeCalledWith(
-    'http://127.0.0.1:8000/api/capsules/aa19653a-ade1-49ec-afd2-f977adbec207/unpublish',
+    'undefined/api/capsules/aa19653a-ade1-49ec-afd2-f977adbec207/unpublish',
     {
       modificationPassword: 'test',
     }

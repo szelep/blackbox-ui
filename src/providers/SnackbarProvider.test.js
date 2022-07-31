@@ -2,7 +2,7 @@ import {
   act,
   render,
   screen,
-  waitForElementToBeRemoved,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -59,7 +59,9 @@ it('should display success message', async () => {
 
   userEvent.click(screen.getByTestId('success-button'));
 
-  expect(screen.getByText('Success message')).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByText('Success message')).toBeInTheDocument();
+  });
   expect(screen.queryByText('Error message')).not.toBeInTheDocument();
 });
 
@@ -72,7 +74,9 @@ it('should display error message', async () => {
 
   userEvent.click(screen.getByTestId('error-button'));
 
-  expect(screen.getByText('Error message')).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByText('Error message')).toBeInTheDocument();
+  });
   expect(screen.queryByText('Success message')).not.toBeInTheDocument();
 });
 
@@ -84,10 +88,12 @@ it('should message vanish after some time', async () => {
   );
 
   userEvent.click(screen.getByTestId('error-button'));
-  expect(screen.getByText('Error message')).toBeInTheDocument();
-
+  await waitFor(() => {
+    expect(screen.getByText('Error message')).toBeInTheDocument();
+  });
   await act(() => {
     jest.advanceTimersByTime(10000);
   });
+
   expect(screen.queryByText('Error message')).not.toBeInTheDocument();
 });

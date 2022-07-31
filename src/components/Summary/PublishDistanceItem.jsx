@@ -1,6 +1,5 @@
 import {
   useCallback,
-  useEffect,
   useState,
 } from 'react';
 import {
@@ -15,6 +14,7 @@ import {
 } from '@mui/material';
 import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 import PropTypes from 'prop-types';
+import { useInterval } from '../../hooks/useInterval';
 
 /**
  * Renders list item with date distance info.
@@ -29,15 +29,12 @@ export function PublishDistanceItem({ publishAt }) {
     { addSuffix: true }
   ), [publishAt]);
   const [distanceText, setDistanceText] = useState(getDistance());
-
-  useEffect(() => {
-    const timer = setInterval(() => setDistanceText(getDistance()), 1000);
-
-    return () => clearInterval(timer);
-  }, [distanceText]);
+  useInterval(() => {
+    setDistanceText(getDistance());
+  });
 
   return (
-    <ListItem alignItems="flex-start">
+    <ListItem>
       <ListItemAvatar>
         <HourglassBottomOutlinedIcon fontSize="large" />
       </ListItemAvatar>

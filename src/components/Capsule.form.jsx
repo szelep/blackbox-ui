@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import {
-  addDays,
+  addHours,
   isAfter,
   isValid,
 } from 'date-fns';
@@ -36,8 +36,9 @@ export function CapsuleForm({
   } = useForm({
     defaultValues: {
       content: initialData?.content || '',
-      publishAt: initialData?.publishAt ? new Date(initialData.publishAt) : addDays(new Date(), 1),
+      publishAt: initialData?.publishAt ? new Date(initialData.publishAt) : addHours(new Date(), 1),
       rawPassword: '',
+      modificationPassword: '',
     },
     mode: 'all',
   });
