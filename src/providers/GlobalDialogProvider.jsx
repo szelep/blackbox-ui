@@ -32,6 +32,7 @@ const reducer = (state, action) => {
       return {
         dialogOpened: false,
       };
+      /* istanbul ignore next */
     default:
       return state;
   }
@@ -79,6 +80,7 @@ export function GlobalDialogProvider({ children }) {
         maxWidth={state.maxWidth}
         fullWidth
         onClose={() => {
+          /* istanbul ignore next */
           dispatch({ type: ACTION_TYPES.CLOSE });
         }}
       >

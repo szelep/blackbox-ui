@@ -19,6 +19,7 @@ const reducer = (state, action) => {
         ...state,
         [action.value]: !state[action.value] ? 1 : state[action.value] + 1,
       };
+      /* istanbul ignore next */
     default:
       return state;
   }

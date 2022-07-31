@@ -86,6 +86,7 @@ export function UnpublishForm({ capsuleId }) {
       >
         Confirm
         {submitting && (
+        /* istanbul ignore next */
           <CircularProgress
             aria-label="Awaits for request finish"
             sx={{

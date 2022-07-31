@@ -94,3 +94,35 @@ it('should render provided initial data', () => {
 
   expect(screen.getByRole('textbox', { name: /choose date, selected date is jan 1, 2100/i })).toBeInTheDocument();
 });
+
+it('should display invalid date error', async () => {
+  render(
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <CapsuleForm
+        onSubmit={jest.fn()}
+        initialData={{
+          publishAt: '1111-31-01',
+        }}
+      />
+    </LocalizationProvider>
+  );
+  await userEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  expect(screen.getByText(/invalid date\./i)).toBeInTheDocument();
+});
+
+it('should display greater than now date error', async () => {
+  render(
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <CapsuleForm
+        onSubmit={jest.fn()}
+        initialData={{
+          publishAt: '2000-01-01',
+        }}
+      />
+    </LocalizationProvider>
+  );
+  await userEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  expect(screen.getByText(/publication date must be greater than now./i)).toBeInTheDocument();
+});

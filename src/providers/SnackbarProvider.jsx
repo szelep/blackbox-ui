@@ -43,6 +43,7 @@ const reducer = (state, action) => {
         open: false,
         message: '',
       };
+      /* istanbul ignore next */
     default:
       return state;
   }

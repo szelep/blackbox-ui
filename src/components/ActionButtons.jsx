@@ -39,6 +39,7 @@ export function ActionButtons({
         >
           {capsuleId ? 'Save changes' : 'Submit'}
           {disable && (
+          /* istanbul ignore next */
             <CircularProgress
               aria-label="Awaits for request finish"
               sx={{

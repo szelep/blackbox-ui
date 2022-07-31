@@ -18,9 +18,15 @@ function TestComponent() {
     watch, reload,
   } = useReloadListener();
   const [state, setState] = useState(0);
+  const [stateArray, setStateArray] = useState(0);
+
   useEffect(() => {
     setState((s) => s + 1);
   }, [watch('some-value')]);
+
+  useEffect(() => {
+    setStateArray((s) => s + 1);
+  }, [watch(['val1', 'val2'])]);
 
   return [
     <button
@@ -39,7 +45,16 @@ function TestComponent() {
     >
       Click
     </button>,
-    <p key="3" data-testid="state-value">{state}</p>,
+    <button
+      key="3"
+      data-testid="reload-array-button"
+      type="button"
+      onClick={() => reload('val2')}
+    >
+      Click
+    </button>,
+    <p key="4" data-testid="state-value">{state}</p>,
+    <p key="5" data-testid="state-array-value">{stateArray}</p>,
   ];
 }
 
@@ -72,7 +87,23 @@ it('should bump value on click valid button', async () => {
     </ReloadListenerProvider>
   );
 
+  /**
+   * Double click is intentionally.
+   */
+  userEvent.click(screen.getByTestId('reload-valid-button'));
   userEvent.click(screen.getByTestId('reload-valid-button'));
 
-  await waitFor(() => expect(screen.getByTestId('state-value')).toHaveTextContent('2'));
+  await waitFor(() => expect(screen.getByTestId('state-value')).toHaveTextContent('3'));
+});
+
+it('should bump array value', async () => {
+  render(
+    <ReloadListenerProvider>
+      <TestComponent />
+    </ReloadListenerProvider>
+  );
+
+  userEvent.click(screen.getByTestId('reload-array-button'));
+
+  await waitFor(() => expect(screen.getByTestId('state-array-value')).toHaveTextContent('2'));
 });

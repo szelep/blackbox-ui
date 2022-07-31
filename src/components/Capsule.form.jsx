@@ -155,6 +155,7 @@ export function CapsuleForm({
           onSubmit(
             payload,
             setError,
+            /* istanbul ignore next */
             () => setSubmitting(false)
           );
         })}
