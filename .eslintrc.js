@@ -25,6 +25,12 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'react/jsx-no-duplicate-props': [
+      'error',
+      {
+        ignoreCase: false,
+      },
+    ],
     'import/prefer-default-export': 0,
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
